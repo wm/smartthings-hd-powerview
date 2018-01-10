@@ -1,6 +1,6 @@
 /**
  * Hunter Douglas PowerView Hub SmartApp (service manager)
- * Copyright (c) 2017 Johnvey Hwang
+ * Copyright (c) 2017 Johnvey Hwang!
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,18 +33,18 @@ preferences {
 
 def singlePagePref() {
     return dynamicPage(
-        name: "singlePagePref", 
-        install: canInstall(), 
-        uninstall: true, 
+        name: "singlePagePref",
+        install: canInstall(),
+        uninstall: true,
         refreshInterval: getPrefInterval()
     ) {
         // setup basic connection to hub
         section("Hub setup") {
             input(
-                name: "hubIP", 
-                title: "IP Address", 
-                type: "text", 
-                required: false, 
+                name: "hubIP",
+                title: "IP Address",
+                type: "text",
+                required: false,
                 submitOnChange: true
             )
             if (hubIP) {
@@ -70,11 +70,11 @@ def singlePagePref() {
             section("Shades") {
                 if (shadeCount > 0) {
                     input(
-                        name: "selectedShades", 
-                        title: "Linked shades (${shadeCount} available)", 
-                        type: "enum", 
-                        options: foundShades, 
-                        multiple: true, 
+                        name: "selectedShades",
+                        title: "Linked shades (${shadeCount} available)",
+                        type: "enum",
+                        options: foundShades,
+                        multiple: true,
                         required: false
                     )
                 } else {
@@ -85,11 +85,11 @@ def singlePagePref() {
             section("Scenes") {
                 if (sceneCount > 0) {
                     input(
-                        name: "selectedScenes", 
-                        title: "Linked scenes (${sceneCount} available)", 
-                        type: "enum", 
+                        name: "selectedScenes",
+                        title: "Linked scenes (${sceneCount} available)",
+                        type: "enum",
                         options: foundScenes,
-                        multiple: true, 
+                        multiple: true,
                         required: false
                     )
                 } else {
@@ -122,10 +122,10 @@ def getHubID() {
     if (myHub) {
         hubID = myHub.id
     } else {
-        def hubs = location.hubs.findAll { 
-            it.type == physicalgraph.device.HubType.PHYSICAL 
-        } 
-        if (hubs.size() == 1) hubID = hubs[0].id 
+        def hubs = location.hubs.findAll {
+            it.type == physicalgraph.device.HubType.PHYSICAL
+        }
+        if (hubs.size() == 1) hubID = hubs[0].id
     }
     return hubID
 }
@@ -161,7 +161,7 @@ def parseDeviceType(deviceNetworkId) {
 
 /**
  * Fetches PV hub information
- * 
+ *
  * Requires that the user input the `hubIP` value
  */
 def fetchHubInfo() {
@@ -337,8 +337,8 @@ def installShade(enumLabel) {
 
     if (!dev) {
         def addedDevice = addChildDevice(
-            "johnvey", 
-            "Hunter Douglas PowerView Shade", 
+            "johnvey",
+            "Hunter Douglas PowerView Shade",
             shadeInfo.deviceNetworkId,
             getHubID(),
             [name: shadeInfo.id, label: shadeInfo.label, completedSetup: true]
@@ -397,8 +397,8 @@ def installScene(enumLabel) {
 
     if (!dev) {
         def addedDevice = addChildDevice(
-            "johnvey", 
-            "Hunter Douglas PowerView Scene", 
+            "johnvey",
+            "Hunter Douglas PowerView Scene",
             sceneInfo.deviceNetworkId,
             getHubID(),
             [name: sceneInfo.id, label: sceneInfo.label, completedSetup: true]
